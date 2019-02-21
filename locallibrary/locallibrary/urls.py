@@ -1,5 +1,4 @@
 """locallibrary URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
 Examples:
@@ -23,6 +22,7 @@ urlpatterns = [
 # Use include() to add paths from the catalog application
 from django.urls import include
 from django.urls import path
+
 urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
@@ -38,3 +38,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+#Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
