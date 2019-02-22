@@ -1,11 +1,10 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
-# Create your views here.
+def funky(request):
+    response="""<html><body><p>This is the funky function sample</p>
+    <body><html>"""
+    return HttpResponse(response)
 
-#def index(request):
-    """View function for home page of site."""
 
-
-    #return render(request, 'index.html', context=context)
-
-#from django.views import generic
