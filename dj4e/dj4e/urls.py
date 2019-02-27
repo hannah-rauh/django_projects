@@ -23,5 +23,7 @@ urlpatterns = [
 
 urlpatterns += [path('', include('home.urls')),
                 path('accounts/', include('django.contrib.auth.urls')),
-                path('autos/', include('autos.urls')),
-                path('home/',include('home.urls'))]
+                #path('autos/', include('autos.urls')), #comment this out for the exam
+                path('home/',include('home.urls')),
+                path('cats/', include('cats.urls')),
+                ]
