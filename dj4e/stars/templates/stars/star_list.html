@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+<head>
+    <meta name="wa4e" content="85d8ce590ad8981ca2c8286f79f59954">
+</head>
+{% block content %}
+  <h1>Star List</h1>
+  {% if star_list %}
+  <ul>
+    {% for star in star_list %}
+      <li>
+          {{ star.nickname }} ({{ star.type }})
+          (<a href="{% url 'star_update' star.id %}">Update</a> |
+          <a href="{% url 'star_delete' star.id %}">Delete</a>) <br/>
+          {{ star.distance }} miles ({{ star.mass }} kgs)
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no stars in the library.</p>
+  {% endif %}
+  <p>
+    {% if type_count > 0 %}
+      <a href="{% url 'star_create' %}">Add a star</a>
+    {% else %}
+      Please add a type before you add a star.
+    {% endif %}
+  </p>
+  <p>
+  <a href="{% url 'type_list' %}">View types</a> ({{ type_count }}) |
+    <a href="{% url 'type_create' %}">Add a type</a>
+  </p>
+{% endblock %}

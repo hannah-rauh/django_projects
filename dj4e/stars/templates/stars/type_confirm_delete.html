@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <meta name="wa4e" content="85d8ce590ad8981ca2c8286f79f59954">
+</head>
+<h1>Delete Type</h1>
+
+<p>Are you sure you want to delete the type: {{ type }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+  <input type="submit" onclick="window.location='{% url 'stars' %}' ; return false;" value="Cancel">
+</form>
+
+{% endblock %}

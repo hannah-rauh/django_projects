@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<head>
+    <meta name="wa4e" content="85d8ce590ad8981ca2c8286f79f59954">
+</head>
+{% block content %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+    <input type="submit" onclick="window.location='{% url 'stars' %}' ; return false;" value="Cancel">
+  </form>
+{% endblock %}
