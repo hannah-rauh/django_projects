@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'autos.apps.AutosConfig',
     'cats.apps.CatsConfig',
     'stars.apps.StarsConfig',
+    'unesco.apps.UnescoConfig',
 ]
 
 MIDDLEWARE = [
