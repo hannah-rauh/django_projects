@@ -1,9 +1,8 @@
-
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-class AdsListView(ListView):#
+class AdsListView(ListView):
     """
     Sub-class the ListView to pass the request to the form.
     """
@@ -16,7 +15,7 @@ class AdsDetailView(DetailView):
 class AdsCreateView(LoginRequiredMixin, CreateView):
     """
     Sub-class of the CreateView to automatically pass the Request to the Form
-    and add the ads to the saved object.
+    and add the owner to the saved object.
     """
 
     def form_valid(self, form):
@@ -50,6 +49,7 @@ class AdsDeleteView(LoginRequiredMixin, DeleteView):
         return qs.filter(ads=self.request.user)
 
 # References
+
 
 # https://stackoverflow.com/questions/862522/django-populate-user-id-when-saving-a-model
 

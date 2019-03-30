@@ -4,7 +4,6 @@ from django.views import View
 from django.views import generic
 from django.shortcuts import render
 
-# Create your views here.
 from ads.util import AdsListView, AdsDetailView, AdsCreateView, AdsUpdateView, AdsDeleteView
 
 class AdListView(AdsListView):
@@ -17,12 +16,12 @@ class AdDetailView(AdsDetailView):
 
 class AdCreateView(AdsCreateView):
     model = Ad
-    fields = ['title', 'text']
-    template_name = "ad_form.html" #
+    fields = ['title', 'text', 'price']
+    template_name = "ad_form.html"
 
 class AdUpdateView(AdsUpdateView):
     model = Ad
-    fields = ['title', 'text']
+    fields = ['title', 'text', 'price']
     template_name = "ad_form.html"
 
 class AdDeleteView(AdsDeleteView):
