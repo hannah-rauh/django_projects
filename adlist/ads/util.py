@@ -21,7 +21,7 @@ class AdsCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         print('form_valid called')
         object = form.save(commit=False)
-        object.ads = self.request.user
+        object.owner = self.request.user
         object.save()
         return super(AdsCreateView, self).form_valid(form)
 
@@ -35,7 +35,7 @@ class AdsUpdateView(LoginRequiredMixin, UpdateView):
         print('update get_queryset called')
         """ Limit a User to only modifying their own data. """
         qs = super(AdsUpdateView, self).get_queryset()
-        return qs.filter(ads=self.request.user)
+        return qs.filter(owner=self.request.user)
 
 class AdsDeleteView(LoginRequiredMixin, DeleteView):
     """
@@ -46,7 +46,7 @@ class AdsDeleteView(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         print('delete get_queryset called')
         qs = super(AdsDeleteView, self).get_queryset()
-        return qs.filter(ads=self.request.user)
+        return qs.filter(owner=self.request.user)
 
 # References
 
