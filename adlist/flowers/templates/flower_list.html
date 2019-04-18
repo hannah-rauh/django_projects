@@ -1,0 +1,30 @@
+{% extends "flower_base_menu.html" %}
+{% block content %}
+<h1>Flowers</h1>
+<p>
+{% if flower_list %}
+<ul>
+  {% for flower in flower_list %}
+    <li>
+        <a href="{% url 'flower_detail'  flower.id %}">{{ flower.name }}</a>
+        {% if flower.owner == user %}
+        (<a href="{% url 'flower_update' flower.id %}">Edit</a> |
+        <a href="{% url 'flower_delete' flower.id %}">Delete</a>)
+        </p>
+        {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>There are no flowers in the database.</p>
+{% endif %}
+</p>
+<p>
+<a href="{% url 'flower_create' %}">Create Flower</a> |
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next=/flowers">Logout</a>
+{% else %}
+<a href="{% url 'login' %}?next={% url 'flowers' %}">Login</a>
+{% endif %}
+</p>
+{% endblock %}

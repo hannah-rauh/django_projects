@@ -1,0 +1,42 @@
+{% extends "flower_base_menu.html" %}
+{% load crispy_forms_tags %}
+{% load humanize %} <!-- https://docs.djangoproject.com/en/2.1/ref/contrib/humanize -->
+{% block content %}
+<h1>
+{% if flower.owner == user %}
+<span style="float: right;">
+<a href="{% url 'flower_update' flower.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'flower_delete' flower.id %}"><i class="fa fa-trash"></i></a>
+</span>
+{% endif %}
+{{ flower.name }}
+{% if flower.content_type %}
+<img style="float:right; max-width:50%;" src="{% url 'flower_picture' flower.id %}">
+{% endif %}
+</h1>
+<p>
+{{ flower.text }}
+</p>
+<p>
+({{ flower.updated_at|naturaltime }})
+</p>
+{% if user.is_authenticated %}
+<br clear="all"/>
+<p>
+<form method="post" action="{% url 'flower_comment_create' flower.id %}">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+<input type="submit" value="Submit">
+<input type="submit" value="All Flowers" onclick="window.location.href='{% url 'flowers' %}';return false;">
+</form>
+</p>
+{% endif %}
+{% for comment in comments %}
+<p> {{ comment.text }}
+({{ comment.updated_at|naturaltime }})
+{% if user == comment.owner %}
+<a href="{% url 'flower_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</p>
+{% endfor %}
+{% endblock %}
