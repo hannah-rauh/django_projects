@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # Keep
     path('accounts/', include('django.contrib.auth.urls')),  # Keep
     path('ads/', include('ads.urls')),  # Keep
+    path('autos/', include('autos.urls')),
     # Sample applications
     # path('hello', include('hello.urls')),
     # path('getpost/', include('getpost.urls')),
